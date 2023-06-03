@@ -14,11 +14,12 @@ mongoose.connect("mongodb+srv://test:test@cluster0.axud0ps.mongodb.net/").then((
 })
 
 app.post("/post", async (req, res) => {
+    // console.log("hh")
     try {
         // const upload = await cloudinary.v2.uploader.upload(req.file.path)
+        // console.log(req.body)
         const post = await blog.create({
             label: req.body.label,
-            description:req.body.description,
             file: req.body.file
         })
         res.status(200).json({
@@ -37,7 +38,6 @@ app.post("/post", async (req, res) => {
 app.get("/post", async (req, res) => {
     // console.log("ok")
     try {
-        // const photo = await photo_schema.find()
         const photos = await blog.find()
         res.status(200).json({
             status: "ok",
